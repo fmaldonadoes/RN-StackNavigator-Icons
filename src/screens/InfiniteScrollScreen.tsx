@@ -3,8 +3,14 @@ import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
 
 import {HeaderTitle} from '../components/HeaderTitle';
 import {FadeInImage} from '../components/FadeInImage';
+import {useContext} from 'react';
+import {ThemeContext} from '../context/themeContext/ThemeContext';
 
 export const InfiniteScrollScreen = () => {
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
+
   const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
 
   const loadMore = () => {
@@ -33,7 +39,7 @@ export const InfiniteScrollScreen = () => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View style={{flex: 1, backgroundColor: colors.background}}>
       <FlatList
         data={numbers}
         keyExtractor={item => item.toString()}
